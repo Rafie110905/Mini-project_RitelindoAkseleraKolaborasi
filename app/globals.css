@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply bg-white text-slate-900 antialiased; }
+  :focus-visible { outline: 3px solid #f97316; outline-offset: 3px; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+}
+
+@layer components {
+  .section { @apply px-5 py-16 sm:px-8 md:py-24; }
+  .container-lp { @apply mx-auto w-full max-w-6xl; }
+  .h2 { @apply text-balance text-3xl font-extrabold leading-tight tracking-tight sm:text-4xl; }
+  /* Kartu non-WA: menyala oranye saat disentuh kursor / difokus keyboard */
+  .card-hover {
+    @apply transition duration-200 hover:-translate-y-1 hover:border-orange-500 hover:shadow-lg hover:ring-1 hover:ring-orange-500 focus-within:border-orange-500 focus-within:ring-1 focus-within:ring-orange-500;
+  }
+  .lead { @apply mt-4 max-w-2xl text-pretty text-base leading-relaxed text-slate-600 sm:text-lg; }
+}
+
+/* Denyut halus tombol WA melayang — satu-satunya animasi non-interaktif */
+@keyframes wa-ping { 0% { transform: scale(1); opacity: .5 } 80%,100% { transform: scale(1.6); opacity: 0 } }
+.wa-ping { animation: wa-ping 2.4s cubic-bezier(0,0,.2,1) infinite; }
